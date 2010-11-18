@@ -60,7 +60,7 @@ if ($lang == 'en') {
 	foreach ($trans as $langs) {
 		if (($langs['abbrev'] || $langs['english']) && empty($langs['del'])) {
 			$langs['abbrev'] = addslashes(stripslashes($langs['abbrev']));
-			$langs['english'] = addslashes(stripslashes($langs['english']));
+			$langs['english'] = w2p_export_single_quoted_string($langs['english'], false);
 			if (!empty($langs['abbrev'])) {
 				$txt .= '\'' . $langs['abbrev'] . '\'=>';
 			}
@@ -71,8 +71,8 @@ if ($lang == 'en') {
 	// editing the translation
 	foreach ($trans as $langs) {
 		if (empty($langs['del'])) {
-			$langs['english'] = addslashes(stripslashes($langs['english']));
-			$langs['lang'] = addslashes(stripslashes($langs['lang']));
+			$langs['english'] = w2p_export_single_quoted_string($langs['english'], false);
+			$langs['lang'] = w2p_export_single_quoted_string($langs['lang'], false);
 			$txt .= '\'' . $langs['english'] . '\'=>\'' . $langs['lang'] . '\',' . "\n";
 		}
 	}

@@ -108,7 +108,7 @@ foreach ($trans as $k => $langs) {
 		$s .= '&nbsp;';
 	}
 	$s .= '</td><td>';
-	$langs['english'] = w2PformSafe($langs['english'], true);
+	$langs['english'] = w2PformSafe($langs['english']);
 	if ($lang == 'en') {
 		if (mb_strlen($langs['english']) < 40) {
 			$s .= '<input type="text" name="trans[' . $index . '][english]" value="' . $langs['english'] . '" size="40" class="text" />';
@@ -122,7 +122,7 @@ foreach ($trans as $k => $langs) {
 	}
 	$s .= '</td><td>';
 	if ($lang != 'en') {
-		$langs['lang'] = w2PformSafe($langs['lang'], true);
+		$langs['lang'] = w2PformSafe($langs['lang']);
 		if (mb_strlen($langs['lang']) < 40) {
 			$s .= '<input type="text" name="trans[' . $index . '][lang]" value="' . $langs['lang'] . '" size="40" class="text" />';
 		} else {

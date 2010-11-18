@@ -1387,3 +1387,27 @@ function w2p_textarea($content)
 
   return $result;
 }
+
+/**
+ * Returns single quoted string representation of $str. 
+ * Usefull for writing config files with content to be evaluated as php code. 
+ * @param string $str String to export
+ * @param boolean $encapsulate Whether encapsulate the returned string with apostrophes, defaults to true.
+ * @return string
+ */
+function w2p_export_single_quoted_string($str, $encapsulate = true) {
+    $patterns = array(
+               // escape backslashes with special meaning in single quoted strings (\\, \') and
+               // last character if it is a backslash.
+       "@(?| ((?:\\\\{2})*) | (\\\\)(') | (\\\\)($))@x",
+       // escape apostrophes  
+       "@'@"
+       );
+    $replaces = array(
+       '$1$1$2', 
+       '\\\\\''
+    );
+    $result = preg_replace($patterns, $replaces, $str);
+    if ($encapsulate) $result = '\''. $result . '\'';
+    return $result;
+}
